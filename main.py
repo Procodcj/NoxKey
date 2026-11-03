@@ -85,15 +85,27 @@ class NoxKeyApp(ctk.CTk):
         self.txt_cifrar_output = ctk.CTkTextbox(frame, height=80, font=ctk.CTkFont(size=12))
         self.txt_cifrar_output.pack(fill="x", padx=10, pady=(0, 8))
 
-        # Botón Copiar al Portapapeles
+        # Barra de acciones inferior (Limpiar y Copiar)
+        actions_cifrar = ctk.CTkFrame(frame, fg_color="transparent")
+        actions_cifrar.pack(fill="x", padx=10, pady=(0, 10))
+
+        btn_limpiar_cifrar = ctk.CTkButton(
+            actions_cifrar,
+            text="🗑 Limpiar Texto",
+            fg_color="#374151",
+            hover_color="#1f2937",
+            command=self._limpiar_cifrar
+        )
+        btn_limpiar_cifrar.pack(side="left")
+
         self.btn_copy_cifrado = ctk.CTkButton(
-            frame, 
+            actions_cifrar, 
             text="📋 Copiar al Portapapeles", 
             fg_color="#2e7d32",
             hover_color="#1b5e20",
             command=self._copiar_cifrado
         )
-        self.btn_copy_cifrado.pack(anchor="e", padx=10, pady=(0, 10))
+        self.btn_copy_cifrado.pack(side="right")
 
     def _build_tab_descifrar(self):
         frame = self.tab_descifrar
@@ -146,15 +158,27 @@ class NoxKeyApp(ctk.CTk):
         self.txt_descifrar_output = ctk.CTkTextbox(frame, height=80, font=ctk.CTkFont(size=13))
         self.txt_descifrar_output.pack(fill="x", padx=10, pady=(0, 8))
 
-        # Botón Copiar Mensaje Original
+        # Barra de acciones inferior (Limpiar y Copiar)
+        actions_descifrar = ctk.CTkFrame(frame, fg_color="transparent")
+        actions_descifrar.pack(fill="x", padx=10, pady=(0, 10))
+
+        btn_limpiar_descifrar = ctk.CTkButton(
+            actions_descifrar,
+            text="🗑 Limpiar Texto",
+            fg_color="#374151",
+            hover_color="#1f2937",
+            command=self._limpiar_descifrar
+        )
+        btn_limpiar_descifrar.pack(side="left")
+
         self.btn_copy_descifrado = ctk.CTkButton(
-            frame, 
+            actions_descifrar, 
             text="📋 Copiar Mensaje Original", 
             fg_color="#2e7d32",
             hover_color="#1b5e20",
             command=self._copiar_descifrado
         )
-        self.btn_copy_descifrado.pack(anchor="e", padx=10, pady=(0, 10))
+        self.btn_copy_descifrado.pack(side="right")
 
     def _toggle_show_key(self, entry: ctk.CTkEntry, button: ctk.CTkButton):
         if entry.cget("show") == "*":
@@ -199,6 +223,16 @@ class NoxKeyApp(ctk.CTk):
 
         if resultado.startswith("Error"):
             messagebox.showerror("Error de Descifrado", resultado)
+
+    def _limpiar_cifrar(self):
+        self.txt_cifrar_input.delete("1.0", "end")
+        self.txt_cifrar_output.delete("1.0", "end")
+        self.txt_cifrar_input.focus_set()
+
+    def _limpiar_descifrar(self):
+        self.txt_descifrar_input.delete("1.0", "end")
+        self.txt_descifrar_output.delete("1.0", "end")
+        self.txt_descifrar_input.focus_set()
 
     def _animar_copia(self, boton: ctk.CTkButton, texto_original: str):
         boton.configure(text="¡Copiado!", fg_color="#388e3c", hover_color="#2e7d32")
