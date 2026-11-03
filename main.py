@@ -86,14 +86,14 @@ class NoxKeyApp(ctk.CTk):
         self.txt_cifrar_output.pack(fill="x", padx=10, pady=(0, 8))
 
         # Botón Copiar al Portapapeles
-        btn_copy = ctk.CTkButton(
+        self.btn_copy_cifrado = ctk.CTkButton(
             frame, 
             text="📋 Copiar al Portapapeles", 
             fg_color="#2e7d32",
             hover_color="#1b5e20",
             command=self._copiar_cifrado
         )
-        btn_copy.pack(anchor="e", padx=10, pady=(0, 10))
+        self.btn_copy_cifrado.pack(anchor="e", padx=10, pady=(0, 10))
 
     def _build_tab_descifrar(self):
         frame = self.tab_descifrar
@@ -147,14 +147,14 @@ class NoxKeyApp(ctk.CTk):
         self.txt_descifrar_output.pack(fill="x", padx=10, pady=(0, 8))
 
         # Botón Copiar Mensaje Original
-        btn_copy = ctk.CTkButton(
+        self.btn_copy_descifrado = ctk.CTkButton(
             frame, 
             text="📋 Copiar Mensaje Original", 
             fg_color="#2e7d32",
             hover_color="#1b5e20",
             command=self._copiar_descifrado
         )
-        btn_copy.pack(anchor="e", padx=10, pady=(0, 10))
+        self.btn_copy_descifrado.pack(anchor="e", padx=10, pady=(0, 10))
 
     def _toggle_show_key(self, entry: ctk.CTkEntry, button: ctk.CTkButton):
         if entry.cget("show") == "*":
@@ -200,12 +200,16 @@ class NoxKeyApp(ctk.CTk):
         if resultado.startswith("Error"):
             messagebox.showerror("Error de Descifrado", resultado)
 
+    def _animar_copia(self, boton: ctk.CTkButton, texto_original: str):
+        boton.configure(text="¡Copiado!", fg_color="#388e3c", hover_color="#2e7d32")
+        self.after(2000, lambda: boton.configure(text=texto_original, fg_color="#2e7d32", hover_color="#1b5e20"))
+
     def _copiar_cifrado(self):
         contenido = self.txt_cifrar_output.get("1.0", "end-1c").strip()
         if contenido:
             self.clipboard_clear()
             self.clipboard_append(contenido)
-            messagebox.showinfo("Copiado", "¡Código cifrado copiado al portapapeles!")
+            self._animar_copia(self.btn_copy_cifrado, "📋 Copiar al Portapapeles")
         else:
             messagebox.showwarning("Atención", "No hay contenido cifrado para copiar.")
 
@@ -214,7 +218,7 @@ class NoxKeyApp(ctk.CTk):
         if contenido and not contenido.startswith("Error"):
             self.clipboard_clear()
             self.clipboard_append(contenido)
-            messagebox.showinfo("Copiado", "¡Mensaje original copiado al portapapeles!")
+            self._animar_copia(self.btn_copy_descifrado, "📋 Copiar Mensaje Original")
         else:
             messagebox.showwarning("Atención", "No hay un mensaje válido para copiar.")
 
