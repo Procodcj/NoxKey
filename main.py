@@ -18,7 +18,7 @@ class NoxKeyApp(ctk.CTk):
         # Encabezado principal
         self.header_label = ctk.CTkLabel(
             self, 
-            text="NoxKey 🔒 Cifrador Privado", 
+            text="NoxKey 🔒 Cifrado Privado", 
             font=ctk.CTkFont(size=22, weight="bold")
         )
         self.header_label.pack(pady=(15, 5))
