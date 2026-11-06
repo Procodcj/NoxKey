@@ -12,7 +12,7 @@ class NoxKeyApp(ctk.CTk):
         super().__init__()
 
         self.title("NoxKey - Cifrado Privado")
-        self.geometry("640x560")
+        self.geometry("640x590")
         self.resizable(False, False)
 
         # Encabezado principal
@@ -25,10 +25,25 @@ class NoxKeyApp(ctk.CTk):
 
         # Sistema de Pestañas
         self.tabview = ctk.CTkTabview(self, width=600, height=470)
-        self.tabview.pack(padx=20, pady=(0, 15), fill="both", expand=True)
+        self.tabview.pack(padx=20, pady=(0, 5), fill="both", expand=True)
 
         self.tab_cifrar = self.tabview.add("Cifrar Mensaje")
         self.tab_descifrar = self.tabview.add("Descifrar Mensaje")
+
+        # Pie de página general (fuera del contenedor de pestañas)
+        self.footer_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.footer_frame.pack(fill="x", padx=20, pady=(0, 10))
+
+        self.btn_acerca_de = ctk.CTkButton(
+            self.footer_frame,
+            text="Acerca de / Licencia",
+            font=ctk.CTkFont(size=11, underline=True),
+            fg_color="transparent",
+            hover_color="gray25",
+            text_color="gray60",
+            command=self._abrir_acerca_de
+        )
+        self.btn_acerca_de.pack(side="left")
 
         # Construcción de la interfaz de cada pestaña
         self._build_tab_cifrar()
@@ -255,6 +270,67 @@ class NoxKeyApp(ctk.CTk):
             self._animar_copia(self.btn_copy_descifrado, "📋 Copiar Mensaje Original")
         else:
             messagebox.showwarning("Atención", "No hay un mensaje válido para copiar.")
+
+    def _abrir_acerca_de(self):
+        ventana = ctk.CTkToplevel(self)
+        ventana.title("Acerca de NoxKey")
+        ventana.geometry("680x520")
+        ventana.minsize(580, 420)
+        ventana.resizable(True, True)
+        ventana.transient(self)
+        ventana.grab_set()
+
+        texto_licencia = (
+            "========================================================================\n"
+            "                         NOXKEY - LICENCIA\n"
+            "             TÉRMINOS DE USO Y DESLINDE DE RESPONSABILIDAD\n"
+            "========================================================================\n\n"
+            "Autor / Desarrollador: Procodcj (GitHub)\n"
+            "Aplicación: NoxKey - Cifrado Privado\n\n"
+            "NoxKey es una herramienta diseñada para el cifrado y descifrado local\n"
+            "de mensajes y texto mediante criptografía simétrica.\n\n"
+            "1. USO \"TAL CUAL\" (AS IS):\n"
+            "Esta aplicación se proporciona de forma libre y gratuita, \"tal cual\" y\n"
+            "según disponibilidad, sin garantías de ningún tipo, expresas o\n"
+            "implícitas, incluyendo, entre otras, garantías de funcionamiento\n"
+            "ininterrumpido, rendimiento, compatibilidad o ausencia de fallos\n"
+            "técnicos.\n\n"
+            "2. PROCESAMIENTO LOCAL Y GESTIÓN DE CLAVES:\n"
+            "Todo el procesamiento de cifrado y descifrado se realiza exclusivamente\n"
+            "en la memoria local del dispositivo. La aplicación no almacena claves,\n"
+            "contraseñas ni textos en bases de datos locales ni en servidores externos.\n"
+            "El usuario es el único responsable de resguardar y recordar sus claves\n"
+            "secretas; el desarrollador no tiene forma de recuperar mensajes cuyo texto\n"
+            "o clave hayan sido olvidados o extraviados.\n\n"
+            "3. LIMITACIÓN DE RESPONSABILIDAD:\n"
+            "En ningún caso el desarrollador (Procodcj) será responsable por daños\n"
+            "directos, indirectos, incidentales, especiales o derivados que resulten\n"
+            "del uso o la imposibilidad de uso de esta aplicación, ni por la pérdida\n"
+            "de información derivada de claves incorrectas o corruptas.\n\n"
+            "Al utilizar NoxKey, usted reconoce y acepta estos términos en su\n"
+            "totalidad.\n\n"
+            "------------------------------------------------------------------------\n"
+            "© 2026 Procodcj. Todos los derechos reservados.\n"
+            "========================================================================"
+        )
+
+        txt_area = ctk.CTkTextbox(
+            ventana,
+            font=ctk.CTkFont(family="Arial", size=12),
+            wrap="word",
+            activate_scrollbars=True
+        )
+        txt_area.pack(padx=20, pady=(15, 10), fill="both", expand=True)
+        txt_area.insert("1.0", texto_licencia)
+        txt_area.configure(state="disabled")
+
+        btn_entendido = ctk.CTkButton(
+            ventana,
+            text="Entendido",
+            width=120,
+            command=ventana.destroy
+        )
+        btn_entendido.pack(pady=(0, 15))
 
 
 if __name__ == "__main__":
