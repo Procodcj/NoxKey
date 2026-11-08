@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoxKey - Cifrado Privado</title>
+    <meta name="description" content="Herramienta portátil de escritorio para cifrado y descifrado simétrico de mensajes privados 100% local en memoria RAM.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <div class="badge">Criptografía Simétrica Local</div>
+            <h1>NoxKey <span class="lock-icon" aria-hidden="true">🔒</span> Cifrado Privado</h1>
+            <p class="hero-subtitle">
+                Aplicación portátil de escritorio para cifrar y descifrar mensajes privados de forma 100% local en memoria RAM. 
+                Sin conexión a servidores, sin bases de datos y sin rastreo.
+            </p>
+            <div class="cta-group">
+                <a href="https://github.com/Procodcj/NoxKey/releases/latest/download/NoxKey.zip" class="btn btn-primary">
+                    ⬇ Descargar para Windows (.zip)
+                </a>
+                <a href="https://github.com/Procodcj/NoxKey" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    Ver Repositorio en GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Sección de Interfaz -->
+        <section class="section" id="interfaz">
+            <div class="section-header">
+                <h2>Interfaz de la Aplicación</h2>
+                <p>Diseño oscuro, limpio y directo enfocado en proteger tus mensajes en segundos.</p>
+            </div>
+            <div class="grid-2">
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/vista_cifrado.png" alt="Pestaña Cifrar Mensaje en NoxKey" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pestaña: Cifrar Mensaje</h3>
+                        <p>
+                            Ingresa tu texto original y define una clave secreta. NoxKey deriva una clave criptográfica única con un salt aleatorio por cada mensaje mediante PBKDF2-HMAC-SHA256 (480,000 iteraciones) y genera una cadena segura en Base64 lista para copiar al portapapeles.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img src="img/vista_desifrado.png" alt="Pestaña Descifrar Mensaje en NoxKey" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <h3>Pestaña: Descifrar Mensaje</h3>
+                        <p>
+                            Pega el código cifrado en Base64 e introduce la clave secreta acordada. El motor valida la autenticidad e integridad del token (Fernet / AES-128-CBC + HMAC-SHA256) y recupera el mensaje original al instante o avisa si la clave es incorrecta.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de Instrucciones para Windows -->
+        <section class="section" id="instalacion">
+            <div class="section-header">
+                <h2>Instrucciones de Uso en Windows</h2>
+                <p>NoxKey es completamente portátil y no requiere instalar Python ni dependencias adicionales.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-number">1</span>
+                    <h3>Descargar el paquete</h3>
+                    <p>Descarga el archivo comprimido <code>NoxKey.zip</code> desde el botón principal de descarga directa.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">2</span>
+                    <h3>Descomprimir</h3>
+                    <p>Extrae el contenido de <code>NoxKey.zip</code> en cualquier carpeta de tu preferencia (manteniendo juntos el ejecutable y la carpeta <code>_internal</code>).</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">3</span>
+                    <h3>Ejecutar NoxKey</h3>
+                    <p>Haz doble clic sobre el archivo <code>NoxKey.exe</code> para abrir la aplicación inmediatamente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloque informativo de Windows SmartScreen -->
+        <section class="section" id="smartscreen">
+            <div class="smartscreen-box">
+                <div class="smartscreen-header">
+                    <h2>Aviso sobre Windows Defender SmartScreen</h2>
+                    <p>
+                        Al abrir <code>NoxKey.exe</code> por primera vez, es posible que Windows muestre una ventana azul de prevención. 
+                        Esto ocurre de forma habitual con aplicaciones independientes y de código abierto que no cuentan con un certificado comercial de firma digital de pago de Microsoft.
+                    </p>
+                    <p>Para ejecutar la aplicación con normalidad, sigue estos dos sencillos pasos:</p>
+                </div>
+
+                <div class="grid-2 smartscreen-steps">
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="img/moreInfo.png" alt="Paso 1: Hacer clic en More info en Windows SmartScreen" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3>Paso 1: Haz clic en "More info" (Más información)</h3>
+                            <p>En la ventana emergente de Windows protected your PC, pulsa sobre el enlace subrayado <strong>More info</strong> o <strong>Más información</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="img/runAnyway.png" alt="Paso 2: Hacer clic en Run anyway en Windows SmartScreen" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3>Paso 2: Haz clic en "Run anyway" (Ejecutar de todas formas)</h3>
+                            <p>Se desplegarán los detalles del ejecutable <code>NoxKey.exe</code>. Pulsa el botón <strong>Run anyway</strong> (<strong>Ejecutar de todas formas</strong>) en la parte inferior.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Seguridad y Privacidad -->
+        <section class="section" id="seguridad">
+            <div class="section-header">
+                <h2>Seguridad, Privacidad y Términos</h2>
+                <p>Principios fundamentales bajo los cuales opera NoxKey.</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-item">
+                    <h3>⚡ Procesamiento 100% en RAM</h3>
+                    <p>
+                        Todas las operaciones criptográficas se ejecutan exclusivamente en la memoria volátil de tu dispositivo. Ningún dato sale de tu equipo.
+                    </p>
+                </div>
+                <div class="security-item">
+                    <h3>🔑 Cero Almacenamiento de Claves</h3>
+                    <p>
+                        NoxKey no guarda contraseñas, historiales ni textos en discos locales, registros del sistema ni servidores externos. El usuario es el único custodio de sus claves secretas.
+                    </p>
+                </div>
+                <div class="security-item">
+                    <h3>⚖️ Deslinde de Responsabilidad</h3>
+                    <p>
+                        El software se distribuye de forma libre y gratuita "tal cual" (<em>AS IS</em>), sin garantías de ningún tipo. El desarrollador no puede recuperar mensajes cuyas claves hayan sido olvidadas ni asume responsabilidad por pérdida de información.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 <strong>Procodcj</strong>. Distribuido bajo Licencia MIT.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Procodcj/NoxKey" target="_blank" rel="noopener noreferrer">Repositorio GitHub</a>
+                <span class="separator">•</span>
+                <a href="https://github.com/Procodcj/NoxKey/releases/latest/download/NoxKey.zip">Descargar última versión</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
