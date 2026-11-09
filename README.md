@@ -1,5 +1,8 @@
 # NoxKey
 
+> 🌐 **Sitio Web Oficial y Documentación:** [https://procodcj.github.io/NoxKey/](https://procodcj.github.io/NoxKey/)  
+> 📦 **Descarga Portable (v1.0.0):** Puedes obtener el ejecutable listo para Windows (`NoxKey.zip`) con su guía visual de instalación directamente desde la web oficial o en la sección de [Releases](https://github.com/Procodcj/NoxKey/releases).
+
 Aplicación de escritorio para Windows diseñada para el cifrado y descifrado seguro de mensajes de texto. Construida en Python con una interfaz gráfica basada en CustomTkinter y respaldo criptográfico estándar mediante Fernet.
 
 ## Características
@@ -15,4 +18,3 @@ Aplicación de escritorio para Windows diseñada para el cifrado y descifrado se
 * Dependencias principales:
   * `customtkinter`
   * `cryptography`
-
