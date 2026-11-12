@@ -56,7 +56,7 @@ class NoxKeyApp(ctk.CTk):
         lbl_msg = ctk.CTkLabel(frame, text="Mensaje Original:", font=ctk.CTkFont(weight="bold"))
         lbl_msg.pack(anchor="w", padx=10, pady=(10, 2))
         
-        self.txt_cifrar_input = ctk.CTkTextbox(frame, height=90, font=ctk.CTkFont(size=13))
+        self.txt_cifrar_input = ctk.CTkTextbox(frame, height=90, font=ctk.CTkFont(size=13), wrap="word")
         self.txt_cifrar_input.pack(fill="x", padx=10, pady=(0, 8))
 
         # 2. Clave secreta con opción de mostrar/ocultar
@@ -170,7 +170,7 @@ class NoxKeyApp(ctk.CTk):
         lbl_res = ctk.CTkLabel(frame, text="Mensaje Original Desencriptado:", font=ctk.CTkFont(weight="bold"))
         lbl_res.pack(anchor="w", padx=10, pady=(2, 2))
 
-        self.txt_descifrar_output = ctk.CTkTextbox(frame, height=80, font=ctk.CTkFont(size=13))
+        self.txt_descifrar_output = ctk.CTkTextbox(frame, height=80, font=ctk.CTkFont(size=13), wrap="word")
         self.txt_descifrar_output.pack(fill="x", padx=10, pady=(0, 8))
 
         # Barra de acciones inferior (Limpiar y Copiar)
