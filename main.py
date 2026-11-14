@@ -1,3 +1,5 @@
+import os
+import sys
 import customtkinter as ctk
 from tkinter import messagebox
 from crypto_engine import encriptar_mensaje, desencriptar_mensaje
@@ -7,6 +9,15 @@ ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
 
+def resource_path(relative_path):
+    """Resuelve la ruta absoluta de recursos en desarrollo y en ejecutable PyInstaller."""
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 class NoxKeyApp(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -14,6 +25,10 @@ class NoxKeyApp(ctk.CTk):
         self.title("NoxKey - Cifrado Privado")
         self.geometry("640x590")
         self.resizable(False, False)
+        try:
+            self.iconbitmap(resource_path("noxkey.ico"))
+        except Exception:
+            pass
 
         # Encabezado principal
         self.header_label = ctk.CTkLabel(
